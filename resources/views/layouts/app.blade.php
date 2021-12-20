@@ -10,9 +10,11 @@
     <title>@yield('title', '我的标题')</title>
 </head>
 <body>
-<head>@include('shared._head')</head>
+
+@include('shared._head')
 
 <div class="container">
+    @include('shared._message')
     @yield('content')
 </div>
 

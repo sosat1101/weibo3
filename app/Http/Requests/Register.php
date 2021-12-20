@@ -24,6 +24,7 @@ class Register extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required|max:80',
             'email' => 'required|email|unique:users|max:50',
             'password' => 'min:6|confirmed|required',
         ];
@@ -32,8 +33,10 @@ class Register extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => '请填写用户名',
             'email.required' => '请填写正确Email',
             'password.confirmed' => '两次输入的密码不一致',
+            'email.unique:users' => '已经存在相同的邮箱',
         ];
     }
 }
