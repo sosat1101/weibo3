@@ -8,19 +8,18 @@
             </div>
             <div class="card-body">
                 @include('shared._errors')
-                <form class="form-control" method="POST" action="{{route('login')}}">
+                <form method="POST" action="{{route('login')}}">
                     @csrf
                     <div class="form-group">
-                        <label class="form-label" for="email">email: </label>
+                        <label for="email">email: </label>
                         <input class="form-control"  type="text" name="email">
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="password">password</label>
+                        <label for="password">password</label>
                         <input class="form-control" type="password" name="password">
                     </div>
-
-                    <button class="btn-success btn mt-2">Sign In</button>
+                    <button class="btn-success btn-block btn mt-2">Sign In</button>
                 </form>
             </div>
         </div>

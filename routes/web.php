@@ -19,3 +19,4 @@ Route::resource('/user', \App\Http\Controllers\UserController::class);
 Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('register');
 Route::get('/signup', [\App\Http\Controllers\Auth\SessionController::class, 'login'])->name('login');
 Route::post('/signup', [\App\Http\Controllers\Auth\SessionController::class, 'store'])->name('login');
+Route::delete('/sign-out', [\App\Http\Controllers\Auth\SessionController::class, 'destroy'])->name('sign-out');

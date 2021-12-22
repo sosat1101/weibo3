@@ -3,15 +3,21 @@
         <div class="nav-item">
             <a class="nav-link active" href="{{ route('home') }}">Home</a>
         </div>
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown" style="padding-right: 100px">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                     用户信息
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Browser Something</a>
+                    <a class="dropdown-item" id="logout" href="#">
+                        <form action="{{ route('sign-out') }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button class="btn btn-block btn-danger" type="submit" name="button">Sign out</button>
+                        </form>
+                    </a>
                 </div>
         </div>
 
