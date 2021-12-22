@@ -17,7 +17,6 @@ class SessionController extends Controller
 
     public function store(Request $request)
     {
-
         $validation = $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
@@ -26,11 +25,11 @@ class SessionController extends Controller
         if (Auth::attempt($validation, true)) {
            if (! is_null(Auth::user()->email_verified_at)) {
                session()->flash('success', '欢迎回来');
-               return redirect(RouteServiceProvider::HOME);
+               return redirect()->route('user.show', Auth::user());
            } else {
                Auth::logout();
                session()->flash('danger', '邮箱未验证');
-               redirect('/');
+               redirect()->back();
            }
         } else {
             session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
