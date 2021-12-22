@@ -17,6 +17,10 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('ho
 
 Route::resource('/user', \App\Http\Controllers\UserController::class);
 Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('register');
+Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('register');
 Route::get('/signup', [\App\Http\Controllers\Auth\SessionController::class, 'login'])->name('login');
 Route::post('/signup', [\App\Http\Controllers\Auth\SessionController::class, 'store'])->name('login');
 Route::delete('/sign-out', [\App\Http\Controllers\Auth\SessionController::class, 'destroy'])->name('sign-out');
+
+Route::resource('user', \App\Http\Controllers\UserController::class);
+Route::resource('status', \App\Http\Controllers\StatusController::class);

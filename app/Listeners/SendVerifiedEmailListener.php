@@ -25,8 +25,8 @@ class SendVerifiedEmailListener
     /**
      * Handle the event.
      *
-     * @param  \App\Events\RegisterEvent  $event
-     * @return void
+     * @param \App\Events\RegisterEvent $event
+     * @return \Illuminate\Http\RedirectResponse|void
      */
     public function handle(RegisterEvent $event)
     {
