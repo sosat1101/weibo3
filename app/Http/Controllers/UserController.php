@@ -52,20 +52,16 @@ class UserController extends Controller
         return redirect()->route('home', $user);
     }
 
-    public function follow(Request $request)
+    public function followers(User $user)
     {
-        $validator = Validator::make($request->all(), [
-            'user_id' => [
-                'required',
-                function ($attribute, $value, $fail) {
-                    if ( ! (is_int($value) || is_array($value))) {
-                        $fail('The '.$attribute.' is invalid.');
-                    }
-                },
-            ],
-        ]);
-        Auth::user()->follow($request->user_id);
-        session()->flash('success', '关注成功');
-        return redirect()->back();
+        $followers = $user->followers;
+        return view('user.followers', compact('followers'));
     }
+
+    public function followings(User $user)
+    {
+        $followings = $user->followings;
+        return view('user.followers', compact('followings'));
+    }
+
 }
