@@ -56,4 +56,36 @@ class User extends Authenticatable
     {
         return $this->hasMany(Status::class, 'user_id');
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    public function follow(array|int $user_ids)
+    {
+        if (! is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+
+        if (! $this->followers->contains($user_ids)) {
+            $this->followers()->attach($user_ids);
+        } else return '已经在关注内,不要重复关注';
+    }
+
+    public function unfollow(array|int $user_ids)
+    {
+        if (! is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+
+        if ($this->followers->contains($user_ids)) {
+            $this->followings()->detach($user_ids);
+        } else return '没有此粉丝';
+    }
 }

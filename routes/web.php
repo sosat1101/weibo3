@@ -27,3 +27,5 @@ Route::delete('/sign-out', [\App\Http\Controllers\Auth\SessionController::class,
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
 Route::resource('status', \App\Http\Controllers\StatusController::class);
+
+Route::get('/follow', [\App\Http\Controllers\UserController::class, 'follow']);

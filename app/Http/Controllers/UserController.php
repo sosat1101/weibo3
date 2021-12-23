@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -48,5 +50,22 @@ class UserController extends Controller
         $user->delete();
         session()->flash('success', '用户删除成功');
         return redirect()->route('home', $user);
+    }
+
+    public function follow(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if ( ! (is_int($value) || is_array($value))) {
+                        $fail('The '.$attribute.' is invalid.');
+                    }
+                },
+            ],
+        ]);
+        Auth::user()->follow($request->user_id);
+        session()->flash('success', '关注成功');
+        return redirect()->back();
     }
 }
