@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -49,4 +51,17 @@ class UserController extends Controller
         session()->flash('success', '用户删除成功');
         return redirect()->route('home', $user);
     }
+
+    public function followers(User $user)
+    {
+        $followers = $user->followers;
+        return view('user.followers', compact('followers'));
+    }
+
+    public function followings(User $user)
+    {
+        $followings = $user->followings;
+        return view('user.followers', compact('followings'));
+    }
+
 }

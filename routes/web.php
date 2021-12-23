@@ -27,3 +27,7 @@ Route::delete('/sign-out', [\App\Http\Controllers\Auth\SessionController::class,
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
 Route::resource('status', \App\Http\Controllers\StatusController::class);
+
+Route::post('/follow', [\App\Http\Controllers\FollowerController::class, 'follow'])->name('follow');
+Route::delete('/follow', [\App\Http\Controllers\FollowerController::class, 'unfollow'])->name('follow');
+
