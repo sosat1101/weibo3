@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Status;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class StatusController extends Controller
 {
@@ -32,7 +35,7 @@ class StatusController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -51,7 +54,7 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Status  $status
+     * @param Status $status
      * @return \Illuminate\Http\Response
      */
     public function show(Status $status)
@@ -62,7 +65,7 @@ class StatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Status  $status
+     * @param Status $status
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Status $status)
@@ -74,7 +77,7 @@ class StatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Status  $status
+     * @param Status $status
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Status $status)
@@ -85,13 +88,15 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Status  $status
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Status $status
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function destroy(Status $status)
     {
+        $this->authorize('destroy', $status);
         $status->delete();
-        session()->flash('danger', 'status 删除成功');
+        session()->flash('success', 'status 删除成功');
         return redirect()->back();
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', Auth::user()->name.'  Profile edit')
+@section('title', '  Profile edit')
 @section('content')
 
     <div class="row justify-content-center">

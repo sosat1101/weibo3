@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-
+        $this->middleware('auth');
     }
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user);
         $credential = $this->validate($request, [
             'name' => 'required|unique:users|max:30',
             'password' => 'nullable|confirmed|min:6',
