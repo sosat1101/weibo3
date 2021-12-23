@@ -23,7 +23,11 @@ class StatusPolicy
 
     public function destroy(User $currentUser, Status $status)
     {
-        Log::info('UserPolicy:delete', compact('currentUser', 'status'));
+        return $currentUser->id === $status->user_id;
+    }
+
+    public function update(User $currentUser, Status $status)
+    {
         return $currentUser->id === $status->user_id;
     }
 }

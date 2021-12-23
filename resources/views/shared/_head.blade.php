@@ -2,6 +2,8 @@
     @if(Auth::check())
         <div class="nav-item">
             <a class="nav-link active" href="{{ route('home') }}">Home</a>
+        </div><div class="nav-item">
+            <a class="nav-link active" href="{{ route('user-list') }}">User List</a>
         </div>
         <div class="nav-item dropdown" style="padding-right: 100px">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button"

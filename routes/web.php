@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
+Route::get('/user-list', [\App\Http\Controllers\StaticController::class, 'userList'])->name('user-list');
+
 Route::resource('/user', \App\Http\Controllers\UserController::class);
+
 Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('register');
 Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('register');
 Route::get('/signup', [\App\Http\Controllers\Auth\SessionController::class, 'login'])->name('login');

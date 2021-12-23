@@ -41,4 +41,12 @@ class UserController extends Controller
         $statuses = $user->status()->orderBy('created_at', 'desc')->paginate(4);
         return view('user.show', compact('user', 'statuses'));
     }
+
+    public function destroy(User $user)
+    {
+        $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success', '用户删除成功');
+        return redirect()->route('home', $user);
+    }
 }

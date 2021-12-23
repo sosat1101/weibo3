@@ -16,8 +16,10 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 12,
-            'contents' => Str::random(150)
+            'user_id' => random_int(1,3),
+            'contents' => $this->faker->text(),
+            'created_at' => $this->faker->dateTime,
+            'updated_at' => $this->faker->dateTime,
         ];
     }
 }
