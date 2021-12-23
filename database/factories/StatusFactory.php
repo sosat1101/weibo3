@@ -17,7 +17,7 @@ class StatusFactory extends Factory
     {
         return [
             'user_id' => 12,
-            'contents' => Str::random(20)
+            'contents' => Str::random(150)
         ];
     }
 }

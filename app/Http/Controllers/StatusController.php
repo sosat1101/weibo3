@@ -32,7 +32,7 @@ class StatusController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -44,6 +44,8 @@ class StatusController extends Controller
             'contents' => $request->contents,
             'user_id' => Auth::id(),
         ]);
+        session()->flash('success', '发布成功！');
+        return redirect()->back();
     }
 
     /**
@@ -61,11 +63,11 @@ class StatusController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Status  $status
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Status $status)
     {
-        //
+        return view('status.edit', compact('status'));
     }
 
     /**
@@ -84,10 +86,12 @@ class StatusController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Status  $status
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Status $status)
     {
-        //
+        $status->delete();
+        session()->flash('danger', 'status 删除成功');
+        return redirect()->back();
     }
 }
