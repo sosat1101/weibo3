@@ -5,13 +5,9 @@ namespace Database\Seeders;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
-class StatusSeeder extends Seeder
+class UserSeeder extends Seeder
 {
-
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +15,10 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        Status::factory()->count(30)->create();
+        User::factory()->count(30)->create();
+        $user = User::find(1);
+        $user->email = 'yinchen@email.com';
+        $user->role = 1;
+        $user->save();
     }
 }
