@@ -10019,3 +10019,9 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.img-zoom {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
