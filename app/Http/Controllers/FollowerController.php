@@ -21,6 +21,7 @@ class FollowerController extends Controller
 
     public function follow(User $user)
     {
+        $this->authorize('follow', $user);
         Auth::user()->follow($user->id);
         session()->flash('success', '关注成功');
         return redirect()->back();
