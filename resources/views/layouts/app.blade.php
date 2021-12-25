@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <title>@yield('title', '我的标题')</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 

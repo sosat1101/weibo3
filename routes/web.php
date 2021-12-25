@@ -31,3 +31,9 @@ Route::resource('status', \App\Http\Controllers\StatusController::class);
 Route::post('/user/follow/{user}', [\App\Http\Controllers\FollowerController::class, 'follow'])->name('follow');
 Route::delete('/user/follow/{user}', [\App\Http\Controllers\FollowerController::class, 'unfollow'])->name('unfollow');
 
+//显示文章和相应的评论
+Route::get('/status/show/{status}', [\App\Http\Controllers\CommentController::class, 'show'])->name('comment.show');
+
+//用户进行评论
+Route::post('/status/{status}/comment', [\App\Http\Controllers\CommentController::class, 'store'])->name('commit.store');
+
