@@ -33,4 +33,9 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function getReplies()
+    {
+        return $this->replies()->with('owner')->get();
+    }
 }

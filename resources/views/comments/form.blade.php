@@ -1,10 +1,8 @@
 <form method="POST" action="{{url('post/'.$status->id.'/comments')}}" accept-charset="UTF-8">
     {{csrf_field()}}
-
     @if(isset($parentId))
         <input type="hidden" name="parent_id" value="{{$parentId}}">
     @endif
-
     <div class="form-group">
         <label for="body" class="control-label">Info:</label>
         <textarea id="body" name="body"  class="form-control" required="required"></textarea>

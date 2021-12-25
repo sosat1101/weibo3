@@ -24,7 +24,7 @@
                     </form>
                     <div>
                         <button class="btn btn-sm btn-dark" onclick="openForm(this)">Commit
-                            <span class="shadow-sm h6">{{ $status->commit->count() }}</span></button>
+                            <span class="shadow-sm h6">{{ count($status->comments)}}</span></button>
                         @include("commit.commit_form")
                     </div>
                 </div>

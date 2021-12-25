@@ -1,3 +1,3 @@
-@foreach($collections as $comment)
-    @include('comments.comment',['comment'=>$comment])
-@endforeach<?php
+@foreach($collections as $commentGroups)
+    @include('comments.comment',['comments'=>$commentGroups])
+@endforeach
