@@ -11,6 +11,7 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'status_id', 'parent_id', 'body'];
     /**
      * 这个评论的所属用户
      * @return BelongsTo
