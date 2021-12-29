@@ -10,7 +10,7 @@
             @if( count($statuses) > 0 )
                 <ul class="list-group mt-2">
                 @foreach( $statuses as $status)
-                    @include('shared._status')
+                    @include('status._status')
                 @endforeach
                 </ul>
                 <div>{{ $statuses->links() }}</div>

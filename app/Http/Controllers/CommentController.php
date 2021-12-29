@@ -23,6 +23,4 @@ class CommentController extends Controller
         session()->flash('success', '评论成功');
         return back();
     }
-
-
 }
