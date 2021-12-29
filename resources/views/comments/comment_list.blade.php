@@ -1,13 +1,13 @@
 <div class="media mt-3">
     <img src="..." class="mr-3" alt="...">
     <div class="media-body">
-        <h5 class="mt-0">
+        <h6 class="mt-0">
             @if ($comment->replies->isNotEmpty())
-                {{ $comment->owner->name }}
+                {{ $comment->owner->name.':' }}
             @else
-                {{ $comment->owner->name.'@ '.$comment->owner->name }}
+                {{ $comment->owner->name.' @ '.$comment->owner->name.':'}}
             @endif
-        </h5>
+        </h6>
         <p>{{ $comment->body }}</p>
         @include('comments.form', ['parent_id' => $comment->id])
         @if($comment->replies->isNotEmpty())

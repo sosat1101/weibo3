@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $statuses = $user->status()->orderBy('created_at', 'desc')->paginate(4);
+        $statuses = $user->status()->orderBy('created_at', 'desc')->with(['owner'])->paginate(4);
         return view('user.show', compact('user', 'statuses'));
     }
 
@@ -55,13 +55,13 @@ class UserController extends Controller
     public function followers(User $user)
     {
         $followers = $user->followers;
-        return view('user.followers', compact('followers'));
+        return view('user.follow', compact('followers'));
     }
 
     public function followings(User $user)
     {
         $followings = $user->followings;
-        return view('user.followers', compact('followings'));
+        return view('user.follow', compact('followings'));
     }
 
 }

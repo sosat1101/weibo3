@@ -23,10 +23,17 @@
             console.log(obj)
             $(obj).next().show()
         }
+
         function closeForm(obj) {
             console.log('closeForm====>')
             console.log(obj)
             $(obj).next().hide();
+        }
+
+        function toggleFn(obj) {
+            // 滑动能显示能隐藏
+            console.log(obj)
+            $(obj).slideToggle("middle");
         }
     </script>
 @stop

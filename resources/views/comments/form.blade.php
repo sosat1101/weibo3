@@ -4,5 +4,5 @@
     <div class="form-group">
         <textarea id="body" name="body"  class="form-control" required="required"></textarea>
     </div>
-    <button type="submit" class="btn btn-success">回复</button>
+    <button type="submit" class="btn btn-success btn-sm">回复</button>
 </form>

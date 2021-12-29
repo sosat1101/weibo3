@@ -10,20 +10,19 @@ class CommentController extends Controller
 {
     public function show(Status $status)
     {
-
-        $comments = $status->comments()->where('parent_id', '=', 0)->with(['owner', 'replies'])->get();
-
-        return view('status.show', compact('status', 'comments'));
+        return view('test');
     }
 
     public function store(Status $status, Request $request)
     {
         $status->comments()->create([
-            'body' => request('body'),
+            'body' => $request->body,
             'user_id' => Auth::id(),
             'parent_id' => $request->post('parent_id', 0),
         ]);
         session()->flash('success', '评论成功');
         return back();
     }
+
+
 }
