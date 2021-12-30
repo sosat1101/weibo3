@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     @include('shared._errors')
-
+                    @include('user.avatar')
                     <form method="POST" action="{{ route('user.update', $user->id) }}">
                         @csrf
                         {{method_field('PUT')}}

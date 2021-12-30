@@ -90,4 +90,9 @@ class User extends Authenticatable
 
         $this->followings()->detach($user_ids);
     }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
