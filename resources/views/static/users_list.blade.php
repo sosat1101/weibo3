@@ -6,7 +6,7 @@
             @foreach($users as $user)
                 <li class="list-group-item row">
                     <a href="{{ route('user.show', $user) }}">
-                        <img src="https://img1.baidu.com/it/u=1195065233,1761810527&fm=26&fmt=auto"
+                        <img src="{{ $user->image->url ?? "https://img1.baidu.com/it/u=1195065233,1761810527&fm=26&fmt=auto" }} "
                              class="align-self-center mr-3" alt="" width="64px" height="64px">{{ $user->name }}
                     </a>
                     @can('destroy', $user)

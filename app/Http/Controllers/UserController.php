@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\User;
+use App\Services\ImageSizeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -64,4 +67,23 @@ class UserController extends Controller
         return view('user.follow', compact('followings'));
     }
 
+    public function uploadAvatar(User $user, Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|mimes:jpg,jpeg,bmp,png,gif',
+        ]);
+
+        $path = Storage::disk('local')->put('image', $request->file('avatar'));
+        //使用方法
+        $resizeimage = new ImageSizeService();
+        $resizeimage->process(Storage::path($path), '286', '286', '1', Storage::path($path));
+
+        Image::updateOrCreate(
+            ['imageable_id' => $user->id, 'imageable_type' => User::class],
+            ['url' => $path,]
+        );
+
+        session()->flash('success', '头像上传成功');
+        return redirect()->route('user.show', $user);
+    }
 }
