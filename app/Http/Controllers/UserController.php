@@ -74,7 +74,7 @@ class UserController extends Controller
         ]);
 
         $path = Storage::disk('local')->put('image', $request->file('avatar'));
-        //使用方法
+
         $resizeimage = new ImageSizeService();
         $resizeimage->process(Storage::path($path), '286', '286', '1', Storage::path($path));
 
